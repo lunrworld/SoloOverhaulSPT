@@ -1,0 +1,11 @@
+<Solution>
+  <Configurations>
+    <BuildType Name="Debug" />
+    <BuildType Name="Package" />
+    <BuildType Name="Release" />
+  </Configurations>
+ <Project Path="Client/SoloOverhaulClient.csproj" />
+ <Project Path="Server/SoloOverhaulServer.csproj">
+  <BuildType Solution="Package|*" Project="Debug" />
+ </Project>
+</Solution>

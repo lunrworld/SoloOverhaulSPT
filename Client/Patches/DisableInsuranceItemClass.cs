@@ -8,7 +8,7 @@ using SPT.Reflection.Patching;
 
 namespace SoloOverhaulforSPT.Patches
 {
-	public class DisableInsuranceItemClass : ModulePatch
+	internal class DisableInsuranceItemClass : ModulePatch
 	{
 		protected override MethodBase GetTargetMethod()
 		{

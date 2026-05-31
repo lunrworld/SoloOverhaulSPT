@@ -13,11 +13,10 @@ namespace SoloOverhaulforSPT
         // BaseUnityPlugin inherits MonoBehaviour, so you can use base unity functions like Awake() and Update()
         private void Awake()
         {
-        new DisableInsuranceItem().Enable();
-        new DisableInsuranceItemClass().Enable();
-        new DisableInsuranceScreen().Enable();
-        new RemoveFleaMarketButton().Enable();
-            // save the Logger to public static field so we can use it elsewhere in the project
+            new DisableInsuranceItem().Enable();
+            new DisableInsuranceItemClass().Enable();
+            new DisableInsuranceScreen().Enable();
+            new RemoveFleaMarketButton().Enable();
             LogSource = Logger;
             LogSource.LogInfo("SOH loaded!");
         }

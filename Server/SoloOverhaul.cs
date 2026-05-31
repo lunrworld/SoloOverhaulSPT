@@ -25,7 +25,7 @@ public record ModMetadata : AbstractModMetadata
     public override Dictionary<string, SemanticVersioning.Range>? ModDependencies { get; init; }
     public override string? Url { get; init; }
     public override bool? IsBundleMod { get; init; }
-    public override string License { get; init; } = "MIT";
+    public override string License { get; init; } = "CC BY-SA 4.0";
 }
     [Injectable(TypePriority = OnLoadOrder.PostDBModLoader + 1)]
     public class EditDatabaseValues(
@@ -37,23 +37,16 @@ public record ModMetadata : AbstractModMetadata
     public Task OnLoad()
     {
         RemoveHideoutTimers();
-
         DisableFlea();
 
-        RebalanceSecureContainers();
-
         logger.Success("SOH Loaded!");
-
         return Task.CompletedTask;
     }
 
     private void RemoveHideoutTimers()
     {
-
         var hideout = databaseService.GetHideout();
-
         var hideoutAreas = hideout.Areas;
-
         var hideoutProduction = hideout.Production;
 
         foreach (var area in hideoutAreas)
@@ -61,7 +54,6 @@ public record ModMetadata : AbstractModMetadata
             foreach (var stageKvP in area.Stages)
             {
                 stageKvP.Value.ConstructionTime = 0; // For some reason this automatically skips the install button.
-
             }
         }
         foreach (var recipe in hideoutProduction.Recipes)
@@ -76,9 +68,4 @@ public record ModMetadata : AbstractModMetadata
         databaseService.GetGlobals().Configuration.RagFair.Enabled = false;
     }   
 
-    private void RebalanceSecureContainers()
-    {
-        var gamma = databaseService.GetTables().Templates.Items["5857a8bc2459772bad15db29"];
-        gamma.Properties.Grids.ToList()[0].Properties.Filters.ToList()[0].ExcludedFilter.Add("5485a8684bdc2da71d8b4567");
-    }
 }

@@ -10,23 +10,21 @@ using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.Server.Core.Services;
 
 namespace SoloOverhaul;
-
-
 public record ModMetadata : AbstractModMetadata
 {
-
     public override string ModGuid { get; init; } = "com.lunarworld.solooverhaul";
     public override string Name { get; init; } = "SoloOverhaul";
     public override string Author { get; init; } = "LunarWorld";
     public override List<string>? Contributors { get; init; }
     public override SemanticVersioning.Version Version { get; init; } = new("1.0.0");
-    public override SemanticVersioning.Range SptVersion { get; init; } = new("~4.0.0");
+    public override SemanticVersioning.Range SptVersion { get; init; } = new("~4.0.13");
     public override List<string>? Incompatibilities { get; init; }
     public override Dictionary<string, SemanticVersioning.Range>? ModDependencies { get; init; }
     public override string? Url { get; init; }
     public override bool? IsBundleMod { get; init; }
     public override string License { get; init; } = "CC BY-SA 4.0";
 }
+
     [Injectable(TypePriority = OnLoadOrder.PostDBModLoader + 1)]
     public class EditDatabaseValues(
         ISptLogger<EditDatabaseValues> logger, 
@@ -35,7 +33,7 @@ public record ModMetadata : AbstractModMetadata
 {
 
     public Task OnLoad()
-    {
+    { 
         RemoveHideoutTimers();
         DisableFlea();
 
@@ -66,6 +64,5 @@ public record ModMetadata : AbstractModMetadata
     private void DisableFlea()
     {
         databaseService.GetGlobals().Configuration.RagFair.Enabled = false;
-    }   
-
+    } 
 }

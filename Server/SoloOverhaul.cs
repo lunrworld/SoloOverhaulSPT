@@ -25,7 +25,7 @@ public record ModMetadata : AbstractModMetadata
     public override string License { get; init; } = "CC BY-SA 4.0";
 }
 
-    [Injectable(TypePriority = OnLoadOrder.PostDBModLoader + 1)]
+[Injectable(TypePriority = OnLoadOrder.PostDBModLoader + 1)]
     public class EditDatabaseValues(
         ISptLogger<EditDatabaseValues> logger, 
         DatabaseService databaseService)
@@ -33,7 +33,7 @@ public record ModMetadata : AbstractModMetadata
 {
 
     public Task OnLoad()
-    { 
+    {
         RemoveHideoutTimers();
         DisableFlea();
 

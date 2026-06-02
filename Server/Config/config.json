@@ -1,3 +1,5 @@
 {
-  "removeHideoutTimers": true
+  "General": {
+    "RemoveHideoutTimer": true,
+  }
 }

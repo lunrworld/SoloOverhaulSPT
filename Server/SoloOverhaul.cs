@@ -8,6 +8,8 @@ using SPTarkov.Server.Core.Models.Enums.Hideout;
 using SPTarkov.Server.Core.Models.Spt.Mod;
 using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.Server.Core.Services;
+using SoloOverhaul.Services;
+using SoloOverhaul.Models.Config;
 
 namespace SoloOverhaul;
 public record ModMetadata : AbstractModMetadata
@@ -28,17 +30,23 @@ public record ModMetadata : AbstractModMetadata
 [Injectable(TypePriority = OnLoadOrder.PostDBModLoader + 1)]
     public class EditDatabaseValues(
         ISptLogger<EditDatabaseValues> logger, 
-        DatabaseService databaseService)
+        DatabaseService databaseService,
+        ConfigService configService)
         : IOnLoad 
 {
 
-    public Task OnLoad()
+    public async Task OnLoad()
     {
-        RemoveHideoutTimers();
+        await configService.LoadAsync();
+
+        if (configService.SOHConfig.General.RemoveHideoutTimers == true)
+        {
+            RemoveHideoutTimers();
+        }
+            
         DisableFlea();
 
         logger.Success("SOH Loaded!");
-        return Task.CompletedTask;
     }
 
     private void RemoveHideoutTimers()

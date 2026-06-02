@@ -16,7 +16,7 @@ namespace SoloOverhaulforSPT
             new DisableInsuranceItem().Enable();
             new DisableInsuranceItemClass().Enable();
             new DisableInsuranceScreen().Enable();
-            new RemoveFleaMarketButton().Enable();
+            new ChangeFleaMarkettoSearch().Enable();
             LogSource = Logger;
             LogSource.LogInfo("SOH loaded!");
         }

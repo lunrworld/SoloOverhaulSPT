@@ -1,5 +1,6 @@
 {
   "General": {
-    "RemoveHideoutTimer": true,
+    "RemoveHideoutTimers": false,
+    "RemoveFlea": false
   }
 }

@@ -43,8 +43,11 @@ public record ModMetadata : AbstractModMetadata
         {
             RemoveHideoutTimers();
         }
-            
-        DisableFlea();
+
+        if (configService.SOHConfig.General.RemoveFlea == true)
+        {
+            DisableFlea();
+        }
 
         logger.Success("SOH Loaded!");
     }

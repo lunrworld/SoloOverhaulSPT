@@ -24,6 +24,7 @@ namespace SoloOverhaulforSPT
                 new DisableInsuranceScreen().Enable();
             }
             new ChangeFleaMarkettoSearch().Enable();
+            new DisableFleaAvailabilityWarning().Enable();
             LogSource = Logger;
             LogSource.LogInfo("SOH loaded!");
         }

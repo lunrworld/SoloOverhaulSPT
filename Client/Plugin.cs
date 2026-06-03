@@ -16,7 +16,7 @@ namespace SoloOverhaulforSPT
         // BaseUnityPlugin inherits MonoBehaviour, so you can use base unity functions like Awake() and Update()
         private void Awake()
         {
-            DisableInsuranceEnabled = Config.Bind("General", "Disable Insurance", true, "Disables insurance and pre-raid screen");
+            DisableInsuranceEnabled = Config.Bind("General", "Disable Insurance", true, "Disables insurance and pre-raid screen (REQUIRES RESTART)");
             if (DisableInsuranceEnabled.Value)
             {
                 new DisableInsuranceItem().Enable();

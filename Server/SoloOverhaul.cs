@@ -1,7 +1,7 @@
 using SPTarkov.Common.Extensions;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.DI;
-using SPTarkov.Server.Core.Extensions;
+using SPTarkov.Server.Core.Generators;
 using SPTarkov.Server.Core.Models.Eft.Common;
 using SPTarkov.Server.Core.Models.Enums;
 using SPTarkov.Server.Core.Models.Enums.Hideout;
@@ -9,7 +9,10 @@ using SPTarkov.Server.Core.Models.Spt.Mod;
 using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.Server.Core.Services;
 using SoloOverhaul.Services;
-using SoloOverhaul.Models.Config;
+using SPTarkov.Server.Core.Models.Spt;
+using SPTarkov.Server.Core.Models.Spt.Config;
+using SPTarkov.Server.Core.Servers;
+using SPTarkov.Server.Core.Models.Common;
 
 namespace SoloOverhaul;
 public record ModMetadata : AbstractModMetadata
@@ -28,11 +31,12 @@ public record ModMetadata : AbstractModMetadata
 }
 
 [Injectable(TypePriority = OnLoadOrder.PostDBModLoader + 1)]
-    public class EditDatabaseValues(
-        ISptLogger<EditDatabaseValues> logger, 
+public class EditDatabaseValues(
+        ISptLogger<EditDatabaseValues> logger,
         DatabaseService databaseService,
-        ConfigService configService)
-        : IOnLoad 
+        ConfigService configService,
+        ConfigServer configServer)
+        : IOnLoad
 {
 
     public async Task OnLoad()
@@ -42,6 +46,10 @@ public record ModMetadata : AbstractModMetadata
         if (configService.SOHConfig.General.RemoveHideoutTimers == true)
         {
             RemoveHideoutTimers();
+        }
+        if (configService.SOHConfig.General.RemoveFleaFunctionality == true)
+        {
+            RemoveFleaFunctionality();
         }
 
         logger.Success("SOH Loaded!");
@@ -65,5 +73,10 @@ public record ModMetadata : AbstractModMetadata
             recipe.ProductionTime = 0;
         }
 
+    }
+
+    private void RemoveFleaFunctionality()
+    {
+        databaseService.GetTables().Globals.Configuration.RagFair.MinUserLevel = 99; // This is the shortest and easiest way to do it. AFAIK the player could cheat by disabling this in config, listing, then renabling it, but who would do that?
     }
 }

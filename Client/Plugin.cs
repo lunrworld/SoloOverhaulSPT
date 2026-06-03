@@ -1,4 +1,5 @@
 ﻿using BepInEx;
+using BepInEx.Configuration;
 using BepInEx.Logging;
 using SoloOverhaulforSPT.Patches;
 
@@ -10,12 +11,18 @@ namespace SoloOverhaulforSPT
     {
         public static ManualLogSource LogSource;
 
+        private ConfigEntry<bool> DisableInsuranceEnabled;
+
         // BaseUnityPlugin inherits MonoBehaviour, so you can use base unity functions like Awake() and Update()
         private void Awake()
         {
-            new DisableInsuranceItem().Enable();
-            new DisableInsuranceItemClass().Enable();
-            new DisableInsuranceScreen().Enable();
+            DisableInsuranceEnabled = Config.Bind("General", "Disable Insurance", true, "Disables insurance and pre-raid screen");
+            if (DisableInsuranceEnabled.Value)
+            {
+                new DisableInsuranceItem().Enable();
+                new DisableInsuranceItemClass().Enable();
+                new DisableInsuranceScreen().Enable();
+            }
             new ChangeFleaMarkettoSearch().Enable();
             LogSource = Logger;
             LogSource.LogInfo("SOH loaded!");

@@ -44,11 +44,6 @@ public record ModMetadata : AbstractModMetadata
             RemoveHideoutTimers();
         }
 
-        if (configService.SOHConfig.General.RemoveFlea == true)
-        {
-            DisableFlea();
-        }
-
         logger.Success("SOH Loaded!");
     }
 
@@ -71,9 +66,4 @@ public record ModMetadata : AbstractModMetadata
         }
 
     }
-
-    private void DisableFlea()
-    {
-        databaseService.GetGlobals().Configuration.RagFair.Enabled = false;
-    } 
 }

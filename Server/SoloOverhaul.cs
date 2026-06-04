@@ -34,8 +34,7 @@ public record ModMetadata : AbstractModMetadata
 public class EditDatabaseValues(
         ISptLogger<EditDatabaseValues> logger,
         DatabaseService databaseService,
-        ConfigService configService,
-        ConfigServer configServer)
+        ConfigService configService)
         : IOnLoad
 {
 

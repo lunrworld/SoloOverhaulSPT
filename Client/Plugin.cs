@@ -6,7 +6,7 @@ using SoloOverhaulforSPT.Patches;
 namespace SoloOverhaulforSPT
 {
     // first string below is your plugin's GUID, it MUST be unique to any other mod. Read more about it in BepInEx docs. Be sure to update it if you copy this project.
-    [BepInPlugin("com.lunarworld.solooverhaul", "Solo Overhaul", "1.0.0")]
+    [BepInPlugin("com.lunarworld.solooverhaul", "LunarWorld-SoloOverhaul", "1.0.0-alpha.1")]
     public class Plugin : BaseUnityPlugin
     {
         public static ManualLogSource LogSource;

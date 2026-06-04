@@ -18,4 +18,4 @@ Known issues:
 
 This is my first SPT mod and very small right now, this testing release is so I can see what you guys want as features, to know if there are bugs you encounter or pacing and economy issues I should focus on.
 
-Credit to DanW's [Hardcore Rules](https://forge.sp-tarkov.com/mod/784/hardcore-rules) mod, as his insurance removal code is used in this mod.
+Credit to DanW and his [Hardcore Rules](https://forge.sp-tarkov.com/mod/784/hardcore-rules) mod, as his insurance removal code is used in this mod.

@@ -77,6 +77,6 @@ public class EditDatabaseValues(
 
     private void RemoveFleaFunctionality()
     {
-        databaseService.GetTables().Globals.Configuration.RagFair.MinUserLevel = 99; // This is the shortest and easiest way to do it. AFAIK the player could cheat by disabling this in config, listing, then renabling it, but who would do that?
+        databaseService.GetTables().Globals.Configuration.RagFair.MinUserLevel = 99; // easy but unoptimized i think
     }
 }

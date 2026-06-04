@@ -13,6 +13,9 @@ using SPTarkov.Server.Core.Models.Spt;
 using SPTarkov.Server.Core.Models.Spt.Config;
 using SPTarkov.Server.Core.Servers;
 using SPTarkov.Server.Core.Models.Common;
+using System.Diagnostics;
+using SPTarkov.Server.Core.Models.Eft.Hideout;
+using SPTarkov.Server.Core.Helpers;
 
 namespace SoloOverhaul;
 public record ModMetadata : AbstractModMetadata
@@ -34,7 +37,8 @@ public record ModMetadata : AbstractModMetadata
 public class EditDatabaseValues(
         ISptLogger<EditDatabaseValues> logger,
         DatabaseService databaseService,
-        ConfigService configService)
+        ConfigService configService,
+        ProfileHelper profileHelper)
         : IOnLoad
 {
 
@@ -53,6 +57,14 @@ public class EditDatabaseValues(
         if (configService.SOHConfig.General.RemoveScavTimer == true)
         {
             RemoveSavageCooldown();
+        }
+        if (configService.SOHConfig.General.RemoveScavCase == true)
+        {
+            RemoveScavCase();
+        }
+        if (configService.SOHConfig.General.RemoveCircleofCultists == true)
+        {
+            RemoveCircleofCultists();
         }
             
 
@@ -87,5 +99,40 @@ public class EditDatabaseValues(
     private void RemoveSavageCooldown()
     {
         databaseService.GetTables().Globals.Configuration.SavagePlayCooldown = 0;
+    }
+
+    private void RemoveScavCase()
+    {
+        var hideout = databaseService.GetHideout();
+        var hideoutAreas = hideout.Areas;
+        var scavcaseArea = hideoutAreas.FirstOrDefault(area => area.Type == HideoutAreas.ScavCase);
+        var scavcaseStages = scavcaseArea.Stages;
+
+        foreach (var stageKvP in scavcaseStages)
+        {
+            var stageRequirements = stageKvP.Value.Requirements;
+
+            foreach (var requiurement in stageRequirements)
+            {
+                requiurement.RequiredLevel = 99;
+            }
+        }
+    }
+    private void RemoveCircleofCultists() // unheard owns circle by default. i can't find a way to remove that rn, just trust the user
+    {
+        var hideout = databaseService.GetHideout();
+        var hideoutAreas = hideout.Areas;
+        var circleArea = hideoutAreas.FirstOrDefault(area => area.Type == HideoutAreas.CircleOfCultists);
+        var circleStages = circleArea.Stages;
+
+        foreach (var stageKvP in circleStages)
+        {
+            var stageRequirements = stageKvP.Value.Requirements;
+
+            foreach (var requirement in stageRequirements)
+            {
+                requirement.RequiredLevel = 99;
+            }
+        }
     }
 }

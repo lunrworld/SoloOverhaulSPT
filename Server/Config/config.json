@@ -1,7 +1,9 @@
 {
   "General": {
-    "RemoveHideoutTimers": true,
+    "RemoveCircleofCultists": true,
     "RemoveFleaFunctionality": true,
+    "RemoveHideoutTimers": true,
+    "RemoveScavCase": true,
     "RemoveScavTimer": true
   }
 }

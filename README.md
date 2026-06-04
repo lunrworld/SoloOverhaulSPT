@@ -8,7 +8,7 @@ This is an experimental alpha project dedicated to porting the EFT MMORPG design
 - Instant hideout crafting and construction
 - Insurance is removed entirely
 - Scav cooldown is removed
-- The Scav Case and Cultist Circle have been "removed"
+- The Scav Case and Cultist Circle have been removed
 
 There is a config system that allows you to enable and disable these features as you like. Some features span across both the server config and client config, and these will be centralized into one config file soon. I plan on turning it into a in-client menu with different difficulty presets at some point in the future.
 

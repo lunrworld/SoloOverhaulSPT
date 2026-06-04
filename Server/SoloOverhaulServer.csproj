@@ -6,7 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <OutputType>Library</OutputType>
-    <Version>0.0.1</Version>
+    <Version>1.0.0-alpha.1</Version>
     <!-- The two lines below will set the output path for the binaries -->
 	<OutputPath>D:\SPT\SPT\user\mods\SoloOverhaul</OutputPath>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>

@@ -51,6 +51,11 @@ public class EditDatabaseValues(
         {
             RemoveFleaFunctionality();
         }
+        if (configService.SOHConfig.General.RemoveScavTimer == true)
+        {
+            RemoveSavageCooldown();
+        }
+            
 
         logger.Success("SOH Loaded!");
     }
@@ -78,5 +83,10 @@ public class EditDatabaseValues(
     private void RemoveFleaFunctionality()
     {
         databaseService.GetTables().Globals.Configuration.RagFair.MinUserLevel = 99; // easy but unoptimized i think
+    }
+
+    private void RemoveSavageCooldown()
+    {
+        databaseService.GetTables().Globals.Configuration.SavagePlayCooldown = 0;
     }
 }

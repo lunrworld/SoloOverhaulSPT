@@ -16,5 +16,6 @@ namespace SoloOverhaul.Models.Config
     {
         public bool RemoveHideoutTimers { get; set; } = true;
         public bool RemoveFleaFunctionality { get; set; } = true;
+        public bool RemoveScavTimer { get; set; } = true;
     }
 }
